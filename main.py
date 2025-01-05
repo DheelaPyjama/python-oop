@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 class Employee:
     raise_amt = 1.08
     num_of_emps = 0
@@ -58,6 +59,15 @@ class Manager(Employee):
     def print_emps(self, emp):
         for emp in self.employees:
             print('-->', emp)
+
+    def __repr__(self):
+        return "{} {}".format(self.first, self.last)
+
+    def __str__(self):
+        return "{} - {}".format(self.fullname(), self.email)
+    
+    def __add__(self, other):
+        return self.pay + other.pay
     
 emp_1 = Employee("Rohit", "Chakraborty", 100000)
 print(emp_1.fullname())
@@ -74,9 +84,13 @@ print(Employee.is_workday(datetime.date(2025, 1, 5)))
 
 dev_1 = Developer("test", "1", 200, 'Python')
 dev_2 = Developer("test", "2", 300, 'Python')
-mgr_1 = Manager("mgr", '1', '123123', [dev_1])
+mgr_1 = Manager("mgr", '1', 123123, [dev_1])
+mgr_2 = Manager("mgr", '2', 123123, [dev_2])
 
 mgr_1.add_emp(dev_2)
+print(mgr_1.__repr__())
+print(mgr_1.__str__())
+print(mgr_1 + mgr_2)
 
 
 
