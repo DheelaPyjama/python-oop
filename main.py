@@ -31,6 +31,33 @@ class Employee:
             return False
         return True
     
+class Developer(Employee):
+    raise_amt = 1.10
+
+    def __init__(self, first, last, pay, prog_lang):
+        super().__init__(first, last, pay)
+        self.prog_lang = prog_lang 
+
+class Manager(Employee):
+    
+    def __init__(self, first, last, pay, employees=None):
+        super().__init__(first, last, pay)
+        if employees is None:
+            self.employees = []
+        else:
+            self.employees = employees
+    
+    def add_emp(self, emp):
+        if emp not in self.employees:
+            self.employees.append(emp)
+
+    def remove_emp(self, emp):
+        if emp in self.employees:
+            self.employees.remove(emp)
+    
+    def print_emps(self, emp):
+        for emp in self.employees:
+            print('-->', emp)
     
 emp_1 = Employee("Rohit", "Chakraborty", 100000)
 print(emp_1.fullname())
@@ -44,4 +71,12 @@ print(emp_2.fullname())
 
 import datetime
 print(Employee.is_workday(datetime.date(2025, 1, 5)))
+
+dev_1 = Developer("test", "1", 200, 'Python')
+dev_2 = Developer("test", "2", 300, 'Python')
+mgr_1 = Manager("mgr", '1', '123123', [dev_1])
+
+mgr_1.add_emp(dev_2)
+
+
 
