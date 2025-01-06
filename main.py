@@ -69,6 +69,9 @@ class Manager(Employee):
     def __add__(self, other):
         return self.pay + other.pay
     
+    def __sub__(self, other):
+        return self.pay - other.pay
+    
 emp_1 = Employee("Rohit", "Chakraborty", 100000)
 print(emp_1.fullname())
 
@@ -91,6 +94,7 @@ mgr_1.add_emp(dev_2)
 print(mgr_1.__repr__())
 print(mgr_1.__str__())
 print(mgr_1 + mgr_2)
+print(mgr_1 - mgr_2)
 
 
 
