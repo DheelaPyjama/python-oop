@@ -17,7 +17,19 @@ class Employee:
     @property
     def fullname(self):
         return "{} {}".format(self.first, self.last)
-    
+
+    @fullname.setter
+    def fullname(self, name):
+        first, last = name.split(' ')
+        self.first = first
+        self.last = last
+
+    @fullname.deleter
+    def fullname(self):
+        print('Delete name')
+        self.first = None
+        self.last = None
+        
     def apply_raise(self):
         self.pay = int(self.pay * self.raise_amt) 
     
