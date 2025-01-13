@@ -6,11 +6,15 @@ class Employee:
     def __init__(self, first, last, pay):
         self.first = first
         self.last = last
-        self.email = self.first + '.' + self.last + "@company.com"
         self.pay = pay
     
         Employee.num_of_emps += 1
 
+    @property
+    def email(self):
+        return "{}.{}.@company.com".format(self.first, self.last)
+
+    @property
     def fullname(self):
         return "{} {}".format(self.first, self.last)
     
@@ -64,7 +68,7 @@ class Manager(Employee):
         return "{} {}".format(self.first, self.last)
 
     def __str__(self):
-        return "{} - {}".format(self.fullname(), self.email)
+        return "{} - {}".format(self.fullname, self.email)
     
     def __add__(self, other):
         return self.pay + other.pay
@@ -73,14 +77,15 @@ class Manager(Employee):
         return self.pay - other.pay
     
 emp_1 = Employee("Rohit", "Chakraborty", 100000)
-print(emp_1.fullname())
+
+print(emp_1.fullname)
 
 emp_2_str = 'Rhea-Mantri-5000000'
 emp_2 = Employee.from_string(emp_2_str)
 
 emp_1.apply_raise()
 print(emp_1.pay)
-print(emp_2.fullname())
+print(emp_2.fullname)
 
 import datetime
 print(Employee.is_workday(datetime.date(2025, 1, 5)))
